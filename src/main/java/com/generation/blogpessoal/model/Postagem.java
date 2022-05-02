@@ -1,17 +1,20 @@
 package com.generation.blogpessoal.model;
 
 import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity //Equivalente a create table.
 @Table (name = "tb_postagens") // Para definir autoincremento. 
@@ -36,6 +39,10 @@ private String texto;
 
 @UpdateTimestamp
 private LocalDateTime data;
+
+@ManyToOne
+@JsonIgnoreProperties("Postagem")
+private Tema tema;
 
 
 public LocalDateTime getData() {
